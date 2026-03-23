@@ -73,8 +73,8 @@ nav{
 }
 nav.scrolled{
   background:rgba(247,249,255,.97);
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   padding:13px 64px;
   border-bottom:1px solid var(--border);
   box-shadow:0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,.08);
@@ -1010,9 +1010,8 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 }
 .notif-strip{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center}
 .notif-card{
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,0.95);
+  border:1px solid rgba(0,0,0,.1);
   border-radius:14px;
   padding:0;overflow:hidden;
   box-shadow:0 8px 32px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.06);
@@ -1027,9 +1026,8 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 }
 /* Synthetic notifications (for platforms without real screenshot) */
 .notif-synth{
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,0.95);
+  border:1px solid rgba(0,0,0,.1);
   border-radius:14px;
   padding:12px 16px;
   box-shadow:0 8px 32px rgba(0,0,0,.10);
@@ -1134,7 +1132,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   width:80px;height:80px;
   top:30%;left:45%;
   background:radial-gradient(circle,rgba(27,80,145,.2) 0%,transparent 70%);
-  animation:float-y 9s ease-in-out infinite reverse;
+
 }
 
 /* ── Shimmer text ── */
@@ -1296,35 +1294,17 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 /* Animated orbs */
 .cta-canvas{position:absolute;inset:0;pointer-events:none}
 .cta-orb{position:absolute;border-radius:50%}
-.cta-orb-1{
-  width:500px;height:500px;top:-120px;left:-100px;
-  background:radial-gradient(circle,rgba(59,139,240,.25) 0%,transparent 65%);
-  animation:float-y 9s ease-in-out infinite;
-}
-.cta-orb-2{
-  width:400px;height:400px;bottom:-80px;right:-80px;
-  background:radial-gradient(circle,rgba(27,80,145,.3) 0%,transparent 65%);
-  animation:float-y2 7s ease-in-out infinite;
-}
-.cta-orb-3{
-  width:200px;height:200px;top:40%;left:40%;
-  background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);
-  animation:float-y 11s ease-in-out infinite reverse;
-}
-.cta-grid-lines{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-}
+.cta-orb-1{width:500px;height:500px;top:-120px;left:-100px;background:radial-gradient(circle,rgba(59,139,240,.2) 0%,transparent 65%)}
+.cta-orb-2{width:400px;height:400px;bottom:-80px;right:-80px;background:radial-gradient(circle,rgba(27,80,145,.25) 0%,transparent 65%)}
+
+.cta-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px;will-change:auto}
 
 /* Social proof strip */
 .cta-proof{
   display:flex;align-items:center;justify-content:center;
   gap:0;flex-wrap:wrap;
-  background:rgba(255,255,255,.07);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
   border-radius:100px;
   padding:14px 32px;
   margin:0 auto 56px;
@@ -1363,14 +1343,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   letter-spacing:-1.5px;color:white;
   margin-bottom:20px;
 }
-.cta-em{
-  display:block;
-  background:linear-gradient(90deg,#7ab8ff 0%,#fff 40%,#7ab8ff 80%);
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shimmer 4.5s linear infinite;
-}
+.cta-em{display:block;color:#a8d4ff;-webkit-text-fill-color:#a8d4ff}
 .cta-sub{
   font-size:17px;line-height:1.75;color:rgba(255,255,255,.72);
   margin-bottom:36px;
@@ -1414,7 +1387,6 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   padding:15px 28px;border-radius:var(--r-sm);
   font-family:var(--f-body);font-size:15px;font-weight:600;
   text-decoration:none;transition:all .25s;cursor:none;
-  backdrop-filter:blur(8px);
 }
 .cta-diag-btn:hover{border-color:white;color:white;background:rgba(255,255,255,.08);transform:translateY(-2px)}
 
@@ -1426,7 +1398,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   .cta-proof-item{padding:0 14px}
   .cta-proof-num{font-size:20px}
   .cta-title{font-size:38px}
-  .cta-orb-1,.cta-orb-2{display:none}
+  .cta-orb-1,.cta-orb-2{width:400px;height:400px;bottom:-80px;right:-80px;background:radial-gradient(circle,rgba(27,80,145,.25) 0%,transparent 65%)}
   .cta-wpp-btn,.cta-diag-btn{width:100%;justify-content:center}
 }
 
@@ -1608,7 +1580,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   .cta-sub{font-size:15px}
   .cta-badges{flex-direction:column;align-items:center}
   .cta-wpp-btn,.cta-diag-btn{width:100%;justify-content:center;font-size:16px;padding:16px}
-  .cta-orb-1,.cta-orb-2,.cta-orb-3{display:none}
+  .cta-orb-1,.cta-orb-2,
 
   /* Footer */
   footer{flex-direction:column;text-align:center;padding:32px 20px;gap:16px}
@@ -1725,13 +1697,14 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 }
 .ceo-portrait-ring{
   position:absolute;
-  inset:-8px;
-  border-radius:24px;
-  background:linear-gradient(135deg,rgba(27,80,145,.25),rgba(59,139,240,.15),transparent 60%);
+  inset:-6px;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--blue) 0%,rgba(59,139,240,.4) 40%,transparent 70%);
   z-index:0;
+  opacity:.5;
 }
 .ceo-portrait{
-  width:320px;height:420px;
+  width:340px;height:440px;
   object-fit:cover;object-position:top center;
   border-radius:20px;
   display:block;
@@ -1752,7 +1725,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   box-shadow:0 8px 32px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.06);
   z-index:2;
   display:flex;align-items:center;
-  animation:float-y 6s ease-in-out infinite;
+  
 }
 .ceo-float-roi{
   bottom:32px;right:-28px;
@@ -1811,7 +1784,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 .ceo-side-badge svg{color:white;flex-shrink:0}
 
 /* ── Content column ── */
-.ceo-content{display:flex;flex-direction:column;gap:24px}
+.ceo-content{display:flex;flex-direction:column;gap:20px}
 
 .ceo-eyebrow{
   display:flex;align-items:center;gap:12px;
@@ -1842,31 +1815,10 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   margin-top:4px;
 }
 
-.ceo-quote{
-  margin:0;
-  padding:20px 24px;
-  background:var(--white);
-  border-left:4px solid var(--blue);
-  border-radius:0 12px 12px 0;
-  font-size:15px;line-height:1.75;
-  color:var(--t2);
-  font-style:italic;
-  box-shadow:0 4px 20px rgba(27,80,145,.07);
-  position:relative;
-}
-.ceo-quote::before{
-  content:'"';
-  position:absolute;
-  top:-8px;left:20px;
-  font-size:64px;line-height:1;
-  color:var(--blue);opacity:.15;
-  font-family:Georgia,serif;
-}
 
-.ceo-bio{
-  font-size:16px;line-height:1.8;
-  color:var(--t2);margin:0;
-}
+
+
+
 
 /* Stats row */
 .ceo-stats-row{
@@ -1877,7 +1829,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   box-shadow:0 4px 24px rgba(27,80,145,.08);
   border:1px solid var(--border);
 }
-.ceo-stat{display:flex;flex-direction:column;flex:1;align-items:center;text-align:center}
+.ceo-stat{display:flex;flex-direction:column;flex:1;align-items:center;text-align:center;padding:8px 0}
 .ceo-stat-num{
   font-family:var(--f-display);font-size:32px;font-weight:800;
   color:var(--blue);line-height:1;
@@ -1933,7 +1885,7 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 
 /* Dark mode */
 [data-theme="dark"] #ceo{background:#0f1225}
-[data-theme="dark"] .ceo-quote{background:#1e2440;color:rgba(255,255,255,.8)}
+[data-theme="dark"] 
 [data-theme="dark"] .ceo-stats-row{background:#1e2440;border-color:#2a3050}
 [data-theme="dark"] .ceo-float-card{will-change:transform;background:#1e2440;box-shadow:0 8px 32px rgba(0,0,0,.4)}
 [data-theme="dark"] .ceo-float-num{color:#5ea8ff}
@@ -1963,6 +1915,30 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   .ceo-stat{align-items:flex-start;text-align:left}
 }
 
+
+.ceo-bio{
+  font-size:16px;line-height:1.8;
+  color:var(--t2);margin:0;
+  padding:20px 22px;
+  background:var(--white);
+  border-radius:12px;
+  border-left:4px solid var(--blue);
+  box-shadow:0 2px 16px rgba(27,80,145,.07);
+}
+[data-theme="dark"] .ceo-bio{background:#1e2440}
+
+.ceo-expertise{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.ceo-exp-tag{
+  background:linear-gradient(135deg,rgba(27,80,145,.08),rgba(59,139,240,.06));
+  border:1px solid rgba(27,80,145,.15);
+  color:var(--blue);
+  padding:6px 14px;border-radius:8px;
+  font-size:12px;font-weight:600;
+  letter-spacing:.3px;
+}
+[data-theme="dark"] .ceo-exp-tag{background:rgba(94,168,255,.08);border-color:rgba(94,168,255,.2);color:#5ea8ff}
 </style>
 </head>
 <body>
@@ -2319,13 +2295,18 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
         <em class="ceo-heading-sub">Fundador &amp; CEO</em>
       </h2>
 
-      <blockquote class="ceo-quote">
-        "Não acredito em campanha que não gera resultado mensurável. Todo investimento do cliente precisa ter retorno claro — ou paramos e repensamos a estratégia."
-      </blockquote>
-
       <p class="ceo-bio">
         Empreendedor com histórico comprovado em <strong>tráfego pago e geração de leads qualificados</strong>, Vitor fundou a VOG com uma missão clara: estruturar o crescimento digital de empresas que querem vender mais — sem achismo, sem promessa vazia.
       </p>
+
+      <!-- Expertise tags -->
+      <div class="ceo-expertise">
+        <span class="ceo-exp-tag">Meta Ads</span>
+        <span class="ceo-exp-tag">Google Ads</span>
+        <span class="ceo-exp-tag">Funil de Vendas</span>
+        <span class="ceo-exp-tag">Lead Qualificado</span>
+        <span class="ceo-exp-tag">Escala Comercial</span>
+      </div>
 
       <!-- Stats row -->
       <div class="ceo-stats-row">
@@ -2634,7 +2615,6 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   <div class="cta-canvas" aria-hidden="true">
     <div class="cta-orb cta-orb-1"></div>
     <div class="cta-orb cta-orb-2"></div>
-    <div class="cta-orb cta-orb-3"></div>
     <div class="cta-grid-lines"></div>
   </div>
 
