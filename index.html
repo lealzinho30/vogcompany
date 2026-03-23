@@ -1233,6 +1233,154 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
   .hero-orb-1,.hero-orb-2,.hero-orb-3{display:none}
 }
 
+
+/* ══════════════════════════════════
+   CTA SECTION — REDESIGN
+══════════════════════════════════ */
+#cta{
+  position:relative;overflow:hidden;
+  padding:80px 64px 100px;
+  background:linear-gradient(135deg,#0d2a52 0%,#1B5091 50%,#1a4a88 100%);
+  text-align:center;
+}
+
+/* Animated orbs */
+.cta-canvas{position:absolute;inset:0;pointer-events:none}
+.cta-orb{position:absolute;border-radius:50%}
+.cta-orb-1{
+  width:500px;height:500px;top:-120px;left:-100px;
+  background:radial-gradient(circle,rgba(59,139,240,.25) 0%,transparent 65%);
+  animation:float-y 9s ease-in-out infinite;
+}
+.cta-orb-2{
+  width:400px;height:400px;bottom:-80px;right:-80px;
+  background:radial-gradient(circle,rgba(27,80,145,.3) 0%,transparent 65%);
+  animation:float-y2 7s ease-in-out infinite;
+}
+.cta-orb-3{
+  width:200px;height:200px;top:40%;left:40%;
+  background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);
+  animation:float-y 11s ease-in-out infinite reverse;
+}
+.cta-grid-lines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* Social proof strip */
+.cta-proof{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;
+  padding:14px 32px;
+  margin:0 auto 56px;
+  max-width:fit-content;
+  position:relative;z-index:2;
+}
+.cta-proof-item{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 28px;
+}
+.cta-proof-num{
+  font-family:var(--f-display);font-size:26px;font-weight:800;
+  color:white;line-height:1;
+}
+.cta-proof-label{
+  font-size:10px;font-weight:600;color:rgba(255,255,255,.6);
+  text-transform:uppercase;letter-spacing:.8px;margin-top:3px;
+}
+.cta-proof-div{width:1px;height:40px;background:rgba(255,255,255,.15);flex-shrink:0}
+
+/* Main content */
+.cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.cta-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-bottom:24px;
+}
+.cta-dot{
+  width:6px;height:6px;background:rgba(255,255,255,.4);
+  border-radius:50%;display:inline-block;
+}
+.cta-title{
+  font-family:var(--f-display);
+  font-size:clamp(40px,5.5vw,72px);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-1.5px;color:white;
+  margin-bottom:20px;
+}
+.cta-em{
+  display:block;
+  background:linear-gradient(90deg,#7ab8ff 0%,#fff 40%,#7ab8ff 80%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 3.5s linear infinite;
+}
+.cta-sub{
+  font-size:17px;line-height:1.75;color:rgba(255,255,255,.72);
+  margin-bottom:36px;
+}
+
+/* Trust badges */
+.cta-badges{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;
+}
+.cta-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:100px;padding:8px 16px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.85);
+  transition:all .25s;
+}
+.cta-badge:hover{background:rgba(255,255,255,.18);color:white}
+.cta-badge svg{color:rgba(255,255,255,.7);flex-shrink:0}
+
+/* CTA buttons */
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.cta-wpp-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25D366;color:white;
+  padding:16px 36px;border-radius:var(--r-sm);
+  font-family:var(--f-body);font-size:15px;font-weight:700;
+  text-decoration:none;transition:all .3s;
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  cursor:none;
+}
+.cta-wpp-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(37,211,102,.5);
+  filter:brightness(1.08);
+}
+.cta-diag-btn{
+  display:inline-flex;align-items:center;
+  border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);
+  padding:15px 28px;border-radius:var(--r-sm);
+  font-family:var(--f-body);font-size:15px;font-weight:600;
+  text-decoration:none;transition:all .25s;cursor:none;
+  backdrop-filter:blur(8px);
+}
+.cta-diag-btn:hover{border-color:white;color:white;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+.cta-disclaimer{font-size:12px;color:rgba(255,255,255,.4)}
+
+@media(max-width:900px){
+  #cta{padding:60px 20px 80px}
+  .cta-proof{padding:12px 16px;gap:0}
+  .cta-proof-item{padding:0 14px}
+  .cta-proof-num{font-size:20px}
+  .cta-title{font-size:38px}
+  .cta-orb-1,.cta-orb-2{display:none}
+  .cta-wpp-btn,.cta-diag-btn{width:100%;justify-content:center}
+}
+
 </style>
 </head>
 <body>
@@ -1766,18 +1914,73 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 
 <!-- CTA -->
 <section id="cta">
-  <img class="cta-bg-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAwIDYwMCI+CjxyZWN0IHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzFCNTA5MSIvPgo8ZGVmcz4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImNnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMTQzZDcwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNTYzYjAiLz4KICA8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0idXJsKCNjZykiLz4KPCEtLSBsYXJnZSBncm93dGggbGluZXMgLS0+Cjxwb2x5bGluZSBwb2ludHM9IjAsNTAwIDIwMCw0NjAgNDAwLDQwMCA2MDAsMzIwIDgwMCwyMzAgMTAwMCwxNjAgMTIwMCwxMDAgMTQwMCw2MCIgCiAgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBvbHlsaW5lIHBvaW50cz0iMCw1NjAgMjAwLDUyMCA0MDAsNDY1IDYwMCwzOTAgODAwLDMwNSAxMDAwLDIzOCAxMjAwLDE3OCAxNDAwLDEzMCIgCiAgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjIiLz4KPCEtLSBkb3RzIGF0IGtleSBwb2ludHMgLS0+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjQ2MCIgcj0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjE1KSIvPgo8Y2lyY2xlIGN4PSI2MDAiIGN5PSIzMjAiIHI9IjEyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMikiLz4KPGNpcmNsZSBjeD0iMTAwMCIgY3k9IjE2MCIgcj0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjE1KSIvPgo8Y2lyY2xlIGN4PSIxNDAwIiBjeT0iNjAiIHI9IjE2IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjUpIi8+CjwhLS0gc3RhdCBjYXJkcyBmbG9hdGluZyAtLT4KPHJlY3QgeD0iODAiIHk9IjgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTA4IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5FbXByZXNhcyBjcmVzY2VuZG88L3RleHQ+Cjx0ZXh0IHg9IjEwMCIgeT0iMTQwIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIzMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIj4yMDArPC90ZXh0Pgo8cmVjdCB4PSI2MDAiIHk9IjQwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+Cjx0ZXh0IHg9IjYyMCIgeT0iNjgiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlJPSSBtw6lkaW88L3RleHQ+Cjx0ZXh0IHg9IjYyMCIgeT0iMTAwIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIzMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIj44eDwvdGV4dD4KPHJlY3QgeD0iMTEwMCIgeT0iMTAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+Cjx0ZXh0IHg9IjExMjAiIHk9IjEyOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UHJpbWVpcm9zIGxlYWRzPC90ZXh0Pgo8dGV4dCB4PSIxMTIwIiB5PSIxNjAiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjI2IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiPmVtIDcyaDwvdGV4dD4KPC9zdmc+" alt="" loading="lazy">
-  <div class="cta-inner reveal">
-    <div class="section-tag">Última chamada</div>
-    <h2>Pare de perder<br><em>clientes para a concorrência.</em></h2>
-    <p>Cada dia sem um sistema de captação estruturado é receita que vai para outro lugar. Comece agora.</p>
-    <div class="cta-actions">
-      <a href="https://wa.me/5511999999999" class="wpp-btn">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Falar no WhatsApp
-      </a>
-      <a href="#diagnostico" class="btn-outline-w">Preencher diagnóstico</a>
+  <!-- Animated background -->
+  <div class="cta-canvas" aria-hidden="true">
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="cta-orb cta-orb-3"></div>
+    <div class="cta-grid-lines"></div>
+  </div>
+
+  <!-- Social proof strip -->
+  <div class="cta-proof reveal">
+    <div class="cta-proof-item">
+      <span class="cta-proof-num">200+</span>
+      <span class="cta-proof-label">empresas atendidas</span>
     </div>
+    <div class="cta-proof-div"></div>
+    <div class="cta-proof-item">
+      <span class="cta-proof-num">8x</span>
+      <span class="cta-proof-label">ROI médio dos clientes</span>
+    </div>
+    <div class="cta-proof-div"></div>
+    <div class="cta-proof-item">
+      <span class="cta-proof-num">72h</span>
+      <span class="cta-proof-label">para os primeiros leads</span>
+    </div>
+    <div class="cta-proof-div"></div>
+    <div class="cta-proof-item">
+      <span class="cta-proof-num">R$2M+</span>
+      <span class="cta-proof-label">gerenciado em tráfego</span>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="cta-inner reveal">
+    <div class="cta-eyebrow">
+      <span class="cta-dot"></span>
+      Última chamada
+      <span class="cta-dot"></span>
+    </div>
+    <h2 class="cta-title">Pare de perder<br><em class="cta-em">clientes para a concorrência.</em></h2>
+    <p class="cta-sub">Cada dia sem um sistema de captação estruturado é receita que vai para outro lugar.<br>A VOG coloca sua empresa em modo de crescimento — agora.</p>
+
+    <!-- Trust badges -->
+    <div class="cta-badges">
+      <div class="cta-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Diagnóstico 100% gratuito
+      </div>
+      <div class="cta-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        Sem fidelidade forçada
+      </div>
+      <div class="cta-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Primeiros leads em 72h
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-actions">
+      <a href="https://wa.me/5511999999999" class="cta-wpp-btn" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+      <a href="#diagnostico" class="cta-diag-btn">Preencher diagnóstico gratuito →</a>
+    </div>
+
+    <p class="cta-disclaimer">Sem compromisso. Resposta em até 2 horas nos dias úteis.</p>
   </div>
 </section>
 
