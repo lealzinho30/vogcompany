@@ -850,60 +850,298 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 .footer-links a{font-size:12px;font-weight:500;color:var(--t3);text-decoration:none;transition:color .25s}
 .footer-links a:hover{color:var(--t1)}
 
-/* ─── AI CHAT ─── */
-.ai-chat-wrap{position:fixed;bottom:28px;right:28px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-.ai-chat-toggle{width:52px;height:52px;background:linear-gradient(135deg,var(--blue),var(--blue-hi));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px var(--blue-glow);cursor:none;transition:all .3s;border:none;flex-shrink:0;position:relative;border:1px solid var(--blue-hi)}
-.ai-chat-toggle:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(27,80,145,.5)}
-.ai-chat-toggle svg{width:22px;height:22px;fill:white;transition:opacity .2s}
-.ai-chat-toggle .ico-close{position:absolute;opacity:0;width:18px;height:18px}
-.ai-chat-open .ico-chat{opacity:0}
-.ai-chat-open .ico-close{opacity:1}
-.ai-chat-notif{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#ef4444;border-radius:50%;border:2px solid var(--ink);animation:pulse-notif 2s infinite;display:none}
-@keyframes pulse-notif{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-.ai-promo-bubble{background:var(--white);border:1px solid var(--border);padding:14px 18px;max-width:240px;box-shadow:0 8px 32px rgba(0,0,0,.4);font-family:var(--f-body);font-size:13px;line-height:1.55;color:var(--t1);position:relative;cursor:none;transition:all .3s;transform:translateY(8px) scale(.96);opacity:0;border-radius:var(--r-md)}
+/* ─── AI CHAT — REDESIGN ─── */
+
+/* Wrap */
+.ai-chat-wrap{
+  position:fixed;bottom:28px;right:28px;z-index:900;
+  display:flex;flex-direction:column;align-items:flex-end;gap:14px;
+}
+
+/* ── FAB Toggle Button ── */
+.ai-chat-toggle{
+  width:56px;height:56px;
+  background:linear-gradient(135deg,#1B5091,#2E6FBE);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(27,80,145,.45);
+  cursor:pointer;transition:all .3s cubic-bezier(.22,.68,0,1.2);
+  border:none;flex-shrink:0;position:relative;
+}
+.ai-chat-toggle:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(27,80,145,.55)}
+.ai-chat-toggle svg{width:22px;height:22px;transition:opacity .2s,transform .2s;position:absolute}
+.ico-chat{opacity:1;transform:scale(1)}
+.ico-close{opacity:0;transform:scale(.7) rotate(-90deg)}
+.ai-chat-open .ico-chat{opacity:0;transform:scale(.7) rotate(90deg)}
+.ai-chat-open .ico-close{opacity:1;transform:scale(1) rotate(0deg)}
+
+/* Pulse ring on FAB */
+.ai-fab-ring{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(27,80,145,.4);
+  animation:fab-pulse 2.5s ease-in-out infinite;
+}
+@keyframes fab-pulse{
+  0%,100%{transform:scale(1);opacity:.6}
+  50%{transform:scale(1.15);opacity:0}
+}
+.ai-chat-open .ai-fab-ring{display:none}
+
+/* Notif dot */
+.ai-chat-notif{
+  position:absolute;top:-2px;right:-2px;
+  width:16px;height:16px;
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+  border-radius:50%;border:2.5px solid var(--ink);
+  animation:pulse-notif 2s infinite;display:none;
+  font-size:9px;color:white;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+@keyframes pulse-notif{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* ── Proactive Bubble ── */
+.ai-promo-bubble{
+  background:var(--white);
+  border-radius:18px 18px 4px 18px;
+  padding:14px 16px 12px;
+  max-width:260px;
+  box-shadow:0 8px 40px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.06);
+  font-family:var(--f-body);
+  position:relative;
+  cursor:default;
+  transform:translateY(10px) scale(.95);opacity:0;
+  transition:all .35s cubic-bezier(.22,.68,0,1.2);
+}
 .ai-promo-bubble.show{transform:translateY(0) scale(1);opacity:1}
-.ai-promo-bubble::after{content:'';position:absolute;bottom:-8px;right:22px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid var(--white)}
-.ai-promo-bubble strong{display:block;font-size:12px;color:var(--accent);margin-bottom:5px;font-weight:700}
-.ai-promo-close{position:absolute;top:6px;right:8px;background:none;border:none;font-size:14px;color:var(--t3);cursor:none;line-height:1;padding:2px}
-.ai-chat-window{width:340px;background:var(--white);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:all .3s ease;max-height:500px;border-radius:var(--r-md)}
+.ai-bubble-content{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ai-bubble-avatar{position:relative;flex-shrink:0}
+.ai-bubble-avatar img{border-radius:50%;display:block}
+.ai-bubble-dot{
+  position:absolute;bottom:1px;right:1px;
+  width:10px;height:10px;background:#22C55E;
+  border-radius:50%;border:2px solid white;
+}
+.ai-bubble-name{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px}
+.ai-bubble-text{font-size:13px;line-height:1.55;color:var(--t1)}
+.ai-bubble-actions{display:flex}
+.ai-bubble-reply{
+  background:var(--blue);color:white;border:none;
+  padding:8px 14px;border-radius:100px;
+  font-family:var(--f-body);font-size:12px;font-weight:700;
+  cursor:pointer;transition:all .2s;width:100%;
+}
+.ai-bubble-reply:hover{background:var(--blue-hi);transform:translateY(-1px)}
+.ai-promo-close{
+  position:absolute;top:8px;right:8px;
+  background:rgba(0,0,0,.06);border:none;
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--t3);transition:all .2s;
+}
+.ai-promo-close:hover{background:rgba(0,0,0,.12);color:var(--t1)}
+
+/* ── Chat Window ── */
+.ai-chat-window{
+  width:360px;
+  background:var(--white);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.06);
+  display:flex;flex-direction:column;
+  transform:translateY(16px) scale(.95);opacity:0;pointer-events:none;
+  transition:all .35s cubic-bezier(.22,.68,0,1.2);
+  max-height:540px;
+}
 .ai-chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
-.ai-chat-header{background:linear-gradient(135deg,var(--blue),var(--blue-hi));padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.ai-avatar{width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.ai-header-info strong{display:block;font-size:13px;font-weight:700;color:white}
-.ai-header-info span{font-size:10px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:4px}
-.ai-online-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;display:inline-block;animation:blink 1.8s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.ai-header-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:none;padding:0;line-height:1;transition:color .2s}
-.ai-header-close:hover{color:white}
-.ai-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:260px;max-height:300px;scroll-behavior:smooth}
+
+/* Header */
+.ai-chat-header{
+  background:linear-gradient(135deg,#143d70 0%,#1B5091 60%,#2563b0 100%);
+  padding:16px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;position:relative;overflow:hidden;
+}
+.ai-chat-header::before{
+  content:'';position:absolute;top:-20px;right:-20px;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.ai-header-left{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.ai-avatar-wrap{position:relative;flex-shrink:0}
+.ai-avatar{
+  width:40px;height:40px;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  border:2px solid rgba(255,255,255,.3);
+}
+.ai-online-dot{
+  position:absolute;bottom:1px;right:1px;
+  width:11px;height:11px;background:#4ade80;
+  border-radius:50%;border:2px solid #1B5091;
+  animation:blink 2.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+.ai-header-info strong{display:block;font-size:14px;font-weight:700;color:white;line-height:1.2}
+.ai-status{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.7);margin-top:2px}
+.ai-status-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;flex-shrink:0;animation:blink 2.5s ease-in-out infinite}
+.ai-header-actions{position:relative;z-index:1}
+.ai-header-close{
+  background:rgba(255,255,255,.15);border:none;
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;color:rgba(255,255,255,.8);
+}
+.ai-header-close:hover{background:rgba(255,255,255,.25);color:white}
+
+/* Messages */
+.ai-messages{
+  flex:1;overflow-y:auto;
+  padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+  min-height:280px;max-height:340px;
+  scroll-behavior:smooth;
+  background:var(--ink-mid);
+}
 .ai-messages::-webkit-scrollbar{width:3px}
 .ai-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.ai-msg{display:flex;gap:7px;align-items:flex-end;max-width:88%}
+.ai-messages::-webkit-scrollbar-track{background:transparent}
+
+/* Message bubbles */
+.ai-msg{display:flex;gap:8px;align-items:flex-end;max-width:85%}
 .ai-msg.bot{align-self:flex-start}
 .ai-msg.user{align-self:flex-end;flex-direction:row-reverse}
-.ai-msg-avatar{width:24px;height:24px;background:linear-gradient(135deg,var(--blue),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
-.ai-msg-bubble{padding:9px 13px;font-size:13px;line-height:1.6;border-radius:var(--r-md);font-family:var(--f-body)}
-.ai-msg.bot .ai-msg-bubble{background:var(--ink-mid);color:var(--t1);border-bottom-left-radius:2px}
-.ai-msg.user .ai-msg-bubble{background:var(--blue);color:white;border-bottom-right-radius:2px}
-.ai-typing{display:flex;gap:4px;align-items:center;padding:10px 13px}
-.ai-typing span{width:6px;height:6px;background:var(--t3);border-radius:50%;animation:typing-bounce .9s infinite}
-.ai-typing span:nth-child(2){animation-delay:.18s}
-.ai-typing span:nth-child(3){animation-delay:.36s}
-@keyframes typing-bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-.ai-quick-replies{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px}
-.ai-qr{background:rgba(59,139,240,.1);border:1px solid rgba(59,139,240,.25);color:var(--accent);padding:6px 11px;font-family:var(--f-body);font-size:11px;font-weight:600;cursor:none;transition:all .2s;border-radius:100px}
-.ai-qr:hover{background:var(--blue);color:white;border-color:var(--blue)}
-.ai-input-row{display:flex;gap:0;border-top:1px solid var(--border);flex-shrink:0}
-.ai-input{flex:1;padding:12px 14px;border:none;outline:none;font-family:var(--f-body);font-size:13px;background:var(--white);color:var(--t1);resize:none}
+.ai-msg-avatar{
+  width:28px;height:28px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),#2E6FBE);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:13px;
+}
+.ai-msg-bubble{
+  padding:10px 14px;
+  font-size:13.5px;line-height:1.6;
+  border-radius:18px;
+  font-family:var(--f-body);
+  max-width:100%;word-break:break-word;
+}
+.ai-msg.bot .ai-msg-bubble{
+  background:var(--white);color:var(--t1);
+  border-bottom-left-radius:4px;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+.ai-msg.user .ai-msg-bubble{
+  background:linear-gradient(135deg,var(--blue),#2563b0);
+  color:white;border-bottom-right-radius:4px;
+}
+
+/* Typing indicator */
+.ai-typing{
+  display:flex;gap:5px;align-items:center;
+  padding:12px 14px;
+  background:var(--white);border-radius:18px;border-bottom-left-radius:4px;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  width:fit-content;
+}
+.ai-typing span{
+  width:7px;height:7px;background:var(--t3);border-radius:50%;
+  animation:typing-bounce 1.2s ease-in-out infinite;
+}
+.ai-typing span:nth-child(2){animation-delay:.2s}
+.ai-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typing-bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+
+/* Quick replies */
+.ai-quick-replies{
+  display:flex;flex-wrap:wrap;gap:6px;
+  padding:8px 14px 6px;
+  background:var(--ink-mid);
+}
+.ai-qr{
+  background:var(--white);
+  border:1.5px solid rgba(27,80,145,.2);
+  color:var(--blue);
+  padding:7px 14px;font-family:var(--f-body);font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .2s;border-radius:100px;
+  white-space:nowrap;
+}
+.ai-qr:hover{background:var(--blue);color:white;border-color:var(--blue);transform:translateY(-1px)}
+
+/* Input area */
+.ai-input-area{
+  background:var(--white);
+  border-top:1px solid var(--border);
+  flex-shrink:0;
+}
+.ai-input-row{display:flex;align-items:center;gap:0;padding:10px 12px}
+.ai-input{
+  flex:1;padding:10px 14px;
+  border:1.5px solid var(--border);border-radius:100px;
+  outline:none;font-family:var(--f-body);font-size:13px;
+  background:var(--ink-mid);color:var(--t1);
+  transition:border-color .2s,box-shadow .2s;
+  resize:none;
+}
+.ai-input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(27,80,145,.1);
+  background:var(--white);
+}
 .ai-input::placeholder{color:var(--t3)}
-.ai-send{background:var(--blue);border:none;padding:0 16px;cursor:none;transition:background .2s;display:flex;align-items:center}
-.ai-send:hover{background:var(--blue-hi)}
-.ai-send svg{width:16px;height:16px;fill:white}
-.ai-handoff{background:linear-gradient(135deg,rgba(10,35,15,.9),rgba(5,20,10,.9));border:1px solid rgba(34,197,94,.2);padding:14px;margin:4px 0;border-radius:var(--r-md)}
-.ai-handoff strong{display:block;font-size:12px;font-weight:700;color:var(--success);margin-bottom:6px}
+.ai-send{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),#2563b0);
+  border:none;cursor:pointer;transition:all .25s;
+  display:flex;align-items:center;justify-content:center;
+  margin-left:8px;flex-shrink:0;
+  box-shadow:0 2px 10px rgba(27,80,145,.3);
+}
+.ai-send:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(27,80,145,.45)}
+.ai-send svg{color:white}
+.ai-powered{
+  font-size:10px;color:var(--t3);text-align:center;
+  padding:0 14px 10px;line-height:1.4;
+}
+.ai-powered a{color:var(--blue);text-decoration:none;font-weight:600}
+.ai-powered a:hover{text-decoration:underline}
+
+/* Handoff card */
+.ai-handoff{
+  background:linear-gradient(135deg,#052210,#073318);
+  border:1px solid rgba(34,197,94,.25);
+  padding:14px;margin:4px 0;border-radius:14px;
+}
+.ai-handoff strong{display:block;font-size:12px;font-weight:700;color:#4ade80;margin-bottom:6px}
 .ai-handoff p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:10px}
-.ai-handoff-btn{display:flex;align-items:center;justify-content:center;gap:7px;background:#25D366;color:white;padding:9px;font-family:var(--f-body);font-size:12px;font-weight:700;text-decoration:none;transition:filter .2s;cursor:none;border:none;width:100%;border-radius:var(--r-sm)}
-.ai-handoff-btn:hover{filter:brightness(1.1)}
+.ai-handoff-btn{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  background:linear-gradient(135deg,#25D366,#1ea855);
+  color:white;padding:10px;font-family:var(--f-body);
+  font-size:13px;font-weight:700;text-decoration:none;
+  transition:all .2s;cursor:pointer;border:none;width:100%;
+  border-radius:100px;box-shadow:0 3px 12px rgba(37,211,102,.3);
+}
+.ai-handoff-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* Dark mode */
+[data-theme="dark"] .ai-chat-window{background:#181c2e;border-color:#2a3050}
+[data-theme="dark"] .ai-messages{background:#0f1225}
+[data-theme="dark"] .ai-msg.bot .ai-msg-bubble{background:#1e2440;color:white}
+[data-theme="dark"] .ai-input-area{background:#181c2e;border-color:#2a3050}
+[data-theme="dark"] .ai-input{background:#0f1225;border-color:#2a3050;color:white}
+[data-theme="dark"] .ai-input:focus{background:#0f1225;border-color:var(--blue)}
+[data-theme="dark"] .ai-promo-bubble{background:#181c2e;border:1px solid #2a3050;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+[data-theme="dark"] .ai-bubble-text{color:rgba(255,255,255,.85)}
+[data-theme="dark"] .ai-bubble-name{color:#5ea8ff}
+[data-theme="dark"] .ai-qr{background:#1e2440;border-color:#2a3050;color:#5ea8ff}
+[data-theme="dark"] .ai-qr:hover{background:var(--blue);color:white}
+[data-theme="dark"] .ai-typing{background:#1e2440}
+
+@media(max-width:900px){
+  .ai-chat-wrap{bottom:16px;right:16px}
+  .ai-chat-window{width:calc(100vw - 32px);max-height:460px;border-radius:16px}
+  .ai-promo-bubble{max-width:220px}
+  .ai-messages{min-height:240px;max-height:280px}
+}
+
 
 /* ─── ANIMATIONS ─── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -1658,38 +1896,80 @@ footer p{font-size:12px;font-weight:500;color:var(--t3)}
 
 <!-- AI CHAT WIDGET -->
 <div class="ai-chat-wrap" id="aiChatWrap">
+
   <!-- Proactive bubble -->
   <div class="ai-promo-bubble" id="aiPromoBubble">
-    <button class="ai-promo-close" id="aiPromoClose">×</button>
-    <strong>🤖 Assistente VOG</strong>
-    Olá! Posso te ajudar a entender como a VOG pode fazer sua empresa crescer. Qual o seu segmento?
+    <button class="ai-promo-close" id="aiPromoClose">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="ai-bubble-content">
+      <div class="ai-bubble-avatar">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%231B5091'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='18' font-family='sans-serif'%3E🤖%3C/text%3E%3C/svg%3E" width="36" height="36" alt="">
+        <span class="ai-bubble-dot"></span>
+      </div>
+      <div>
+        <p class="ai-bubble-name">Assistente VOG</p>
+        <p class="ai-bubble-text">Olá! 👋 Posso te ajudar a entender como a VOG pode fazer sua empresa crescer. Qual o seu segmento?</p>
+      </div>
+    </div>
+    <div class="ai-bubble-actions">
+      <button class="ai-bubble-reply" onclick="document.getElementById('aiChatToggle').click()">Quero saber mais →</button>
+    </div>
   </div>
 
   <!-- Chat window -->
   <div class="ai-chat-window" id="aiChatWindow">
+
+    <!-- Header -->
     <div class="ai-chat-header">
-      <div class="ai-avatar">🤖</div>
-      <div class="ai-header-info">
-        <strong>Assistente VOG</strong>
-        <span><i class="ai-online-dot"></i> Online agora</span>
+      <div class="ai-header-left">
+        <div class="ai-avatar-wrap">
+          <div class="ai-avatar">🤖</div>
+          <span class="ai-online-dot"></span>
+        </div>
+        <div class="ai-header-info">
+          <strong>Assistente VOG</strong>
+          <span class="ai-status">
+            <span class="ai-status-dot"></span>
+            Online · responde em segundos
+          </span>
+        </div>
       </div>
-      <button class="ai-header-close" id="aiHeaderClose">×</button>
+      <div class="ai-header-actions">
+        <button class="ai-header-close" id="aiHeaderClose" title="Fechar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
     </div>
+
+    <!-- Messages -->
     <div class="ai-messages" id="aiMessages"></div>
+
+    <!-- Quick replies -->
     <div class="ai-quick-replies" id="aiQuickReplies"></div>
-    <div class="ai-input-row">
-      <input class="ai-input" id="aiInput" placeholder="Digite sua mensagem..." autocomplete="off">
-      <button class="ai-send" id="aiSend">
-        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-      </button>
+
+    <!-- Input row -->
+    <div class="ai-input-area">
+      <div class="ai-input-row">
+        <input class="ai-input" id="aiInput" placeholder="Escreva uma mensagem..." autocomplete="off">
+        <button class="ai-send" id="aiSend" title="Enviar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <p class="ai-powered">Powered by Claude AI · <a href="#diagnostico">Diagnóstico gratuito</a></p>
     </div>
   </div>
 
-  <!-- Toggle button -->
-  <button class="ai-chat-toggle" id="aiChatToggle">
+  <!-- Toggle FAB -->
+  <button class="ai-chat-toggle" id="aiChatToggle" aria-label="Abrir chat">
     <div class="ai-chat-notif" id="aiNotif"></div>
-    <svg class="ico-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-    <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <div class="ai-fab-ring"></div>
+    <svg class="ico-chat" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
   </button>
 </div>
 
